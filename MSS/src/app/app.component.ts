@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <div>
       <h1>{{pageTitle}}</h1>
-      <div>My First Component</div>
+      <mss-products></mss-products>
     </div>`,
 })
 export class AppComponent {
