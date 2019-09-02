@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'mss-root',
+  selector: 'custom-body',
   template: `
     <div>
-      <h1>{{pageTitle}}</h1>
-      <mss-products></mss-products>
+      <custom-products></custom-products>
     </div>`,
 })
 export class AppComponent {
-  pageTitle: string = 'Macanta Software Solutions';
+
 }
