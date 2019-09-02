@@ -1,11 +1,13 @@
 <div class='card'>
     <div class='card-header'>
+        <!-- Shorthand If-statement with Interpolation (One-way binding) -->
         {{ (listFilter ? listFilter + ' ' + titleSuffix : pageTitle) | titlecase }}
     </div>
     <div class='card-body'>
         <div class='row'>
             <div class='col-md-2'>Search:</div>
             <div class='col-md-4'>
+                <!-- Two-Way binding using the ngModel property from the FormsModule -->
                 <input type='text' [(ngModel)]='listFilter'/>
             </div>
         </div>
@@ -15,6 +17,7 @@
                 <thead>
                     <tr>
                         <th>
+                            <!-- Event Binding the onClick event (One-Way binding) -->
                             <button class='btn btn-primary' (click)='toggleImage()'>
                                 {{ showImage ? 'Hide' : 'Show' }}
                             </button>
@@ -27,19 +30,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let product of products'>
+                    <!-- Using Angular's build-in If-statement property *ngIf -->
+                    <tr *ngFor='let product of filteredProducts'>
                         <td>
+                            <!-- Binding source, title and style properties (One-Way binding) -->
                             <img *ngIf='showImage'
                                 [src]='product.imageUrl' 
                                 [title]='product.productName'
                                 [style.width.px]='imageWidth'
                                 [style.margin.px]='imageMargin'>
                         </td>
+                        <!-- Using Angular's build-in pipes to format data -->
+                        <!-- Using custom pipe class ConvertToSpaces -->
                         <td>{{ product.productName | titlecase }}</td>
-                        <td>{{ product.productCode | uppercase }}</td>
+                        <td>{{ product.productCode | convertToSpaces:'-'  | uppercase }}</td>
                         <td>{{ product.releaseDate | date:'dd/MM/yy' }}</td>
                         <td>{{ product.price | currency:'EUR':'symbol':'1.2-2' | lowercase }}</td>
-                        <td>{{ product.starRating + '★' }}</td>
+                        <td>{{ product.starRating + '★' }}</td> <!-- ★★★★☆ -->
                     </tr>
                 </tbody>
             </table>
