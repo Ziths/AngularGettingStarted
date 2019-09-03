@@ -69,7 +69,7 @@ export class ProductListComponent implements OnInit {
     }
   ];
 
-  filteredProducts: IProduct[];
+  filteredProducts: IProduct[]
 
 // Class Constructor
   constructor() {
@@ -100,7 +100,11 @@ export class ProductListComponent implements OnInit {
 
   search(query: string): IProduct[] {
     query = query.toLocaleLowerCase();
-    return this.products.filter( (product: IProduct) =>
+    return this.products.filter((product: IProduct) =>
       product.productName.toLocaleLowerCase().indexOf(query) !== -1);
+  }
+
+  onRatingClicked(message: string): void {
+    alert(message);
   }
 }

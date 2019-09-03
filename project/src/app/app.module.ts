@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list.component';
-import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
+import { ConvertToSpacesPipe } from './shared/pipes/convert-to-spaces.pipe';
+import { StarComponent } from './shared/star/star.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
-    ConvertToSpacesPipe
+    ConvertToSpacesPipe,
+    StarComponent
   ],
   imports: [
     BrowserModule,
@@ -19,4 +21,6 @@ import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
     AppComponent
   ],
 })
-export class AppModule { }
+export class AppModule {
+  // Silence is golden.
+}

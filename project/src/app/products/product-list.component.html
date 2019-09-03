@@ -11,45 +11,49 @@
                 <input type='text' [(ngModel)]='listFilter'/>
             </div>
         </div>
-        <div class='table-responsive'
+        <table class='table'
             *ngIf='products && products.length'>
-            <table class='table'>
-                <thead>
-                    <tr>
-                        <th>
-                            <!-- Event Binding the onClick event (One-Way binding) -->
-                            <button class='btn btn-primary' (click)='toggleImage()'>
-                                {{ showImage ? 'Hide' : 'Show' }}
-                            </button>
-                        </th>
-                        <th>Product</th>
-                        <th>Code</th>
-                        <th>Available</th>
-                        <th>Price</th>
-                        <th>Rating</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Using Angular's build-in If-statement property *ngIf -->
-                    <tr *ngFor='let product of filteredProducts'>
-                        <td>
-                            <!-- Binding source, title and style properties (One-Way binding) -->
-                            <img *ngIf='showImage'
-                                [src]='product.imageUrl' 
-                                [title]='product.productName'
-                                [style.width.px]='imageWidth'
-                                [style.margin.px]='imageMargin'>
-                        </td>
-                        <!-- Using Angular's build-in pipes to format data -->
-                        <!-- Using custom pipe class ConvertToSpaces -->
-                        <td>{{ product.productName | titlecase }}</td>
-                        <td>{{ product.productCode | convertToSpaces:'-'  | uppercase }}</td>
-                        <td>{{ product.releaseDate | date:'dd/MM/yy' }}</td>
-                        <td>{{ product.price | currency:'EUR':'symbol':'1.2-2' | lowercase }}</td>
-                        <td>{{ product.starRating + '★' }}</td> <!-- ★★★★☆ -->
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <thead>
+                <tr>
+                    <th>
+                        <!-- Event Binding the onClick event (One-Way binding) -->
+                        <button class='btn btn-primary' (click)='toggleImage()'>
+                            {{ showImage ? 'Hide' : 'Show' }}
+                        </button>
+                    </th>
+                    <th>Product</th>
+                    <th>Code</th>
+                    <th>Available</th>
+                    <th>Price</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Using Angular's build-in If-statement property *ngIf -->
+                <tr *ngFor='let product of filteredProducts'>
+                    <td>
+                        <!-- Binding source, title and style properties (One-Way binding) -->
+                        <img *ngIf='showImage'
+                            [src]='product.imageUrl' 
+                            [title]='product.productName'
+                            [style.width.px]='imageWidth'
+                            [style.margin.px]='imageMargin'>
+                    </td>
+                    <!-- Using Angular's build-in pipes to format data -->
+                    <!-- Using custom pipe class ConvertToSpaces -->
+                    <td>{{ product.productName | titlecase }}</td>
+                    <td id='productCode'>{{ product.productCode | convertToSpaces:'-' | uppercase }}</td>
+                    <td>{{ product.releaseDate | date:'dd/MM/yy' }}</td>
+                    <td>{{ product.price | currency:'EUR':'symbol':'2.2-2' | lowercase }}</td>
+                    <td>
+                        <!-- Binding to StarComponent's Input decorated property -->
+                        <!-- Binding to StarComponent's Output decorated EventEmitter -->
+                        <custom-rating [rating]='product.starRating'
+                            (ratingClicked)='onRatingClicked($event)'>
+                        </custom-rating>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
