@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit {
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: boolean = false;
+  errorMessage: string;
 
   // Using custom interface IProduct for strong typing
   products: IProduct[];
@@ -42,8 +43,16 @@ export class ProductListComponent implements OnInit {
   // Angular's build-in Lifecycle hook onInit
   ngOnInit(): void {
     console.log('Hello World!');
-    this.products = this.productService.getProducts();
-    this.filteredProducts = this.products;
+
+    this.productService.getProducts().subscribe({
+      next: products => {
+        this.products = products;
+        this.filteredProducts = this.products;
+      },
+      error: err => {
+        this.errorMessage = err;
+      }
+    });
   }
 
   search(query: string): IProduct[] {
