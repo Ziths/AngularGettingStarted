@@ -4,7 +4,6 @@ import { ProductService } from './product.service';
 
 // Component Decorator
 @Component({
-  selector: 'custom-products',
   templateUrl: './product-list.component.html',
   styleUrls: [ './product-list.component.css', ],
 })
@@ -13,7 +12,8 @@ export class ProductListComponent implements OnInit {
   titleSuffix: string = 'Shop';
   pageTitle: string = 'Any' + ' ' +  this.titleSuffix;
   imageWidth: number = 50;
-  imageMargin: number = 2;
+  imageHeight: number = 50;
+  imageMargin: number = 5;
   showImage: boolean = false;
   errorMessage: string;
 

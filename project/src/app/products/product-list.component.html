@@ -37,11 +37,12 @@
                             [src]='product.imageUrl' 
                             [title]='product.productName'
                             [style.width.px]='imageWidth'
+                            [style.height.px]='imageHeight'
                             [style.margin.px]='imageMargin'>
                     </td>
                     <!-- Using Angular's build-in pipes to format data -->
                     <!-- Using custom pipe class ConvertToSpaces -->
-                    <td>{{ product.productName | titlecase }}</td>
+                    <td><a [routerLink]="['/products', product.productId]">{{ product.productName | titlecase }}</a></td>
                     <td id='productCode'>{{ product.productCode | convertToSpaces:'-' | uppercase }}</td>
                     <td>{{ product.releaseDate | date:'dd/MM/yy' }}</td>
                     <td>{{ product.price | currency:'EUR':'symbol':'2.2-2' | lowercase }}</td>

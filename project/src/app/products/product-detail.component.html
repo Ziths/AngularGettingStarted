@@ -1,0 +1,56 @@
+<div class='card'
+     *ngIf='product'>
+    <div class='card-header'>
+        {{ pageTitle + ' ' + product.productName }}
+    </div>
+
+    <div class='card-body'>
+        <div class='row'>
+            <div class='col-md-8'>
+                <div class='row'>
+                    <div class='col-md-4'><b>Name:</b></div>
+                    <div class='col-md-8'>{{ product.productName | titlecase }}</div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-4'><b>Code:</b></div>
+                    <div class='col-md-8' id='productCode'>{{ product.productCode| convertToSpaces:'-' | uppercase }}</div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-4'><b>Description:</b></div>
+                    <div class='col-md-8'>{{ product.description }}</div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-4'><b>Availability:</b></div>
+                    <div class='col-md-8'>{{ product.releaseDate | date:'dd/MM/yy' }}</div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-4'><b>Price:</b></div>
+                    <div class='col-md-8'>{{ product.price | currency:'EUR':'symbol':'2.2-2' | lowercase }}</div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-4'><b>Rating:</b></div>
+                    <div class='col-md-8'>
+                        <custom-rating [rating]='product.starRating'>
+                        </custom-rating>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-md-4'>
+                <img class='center-block img-responsive'
+                     [style.width.px]='200'
+                     [style.margin.px]='2'
+                     [src]='product.imageUrl'
+                     [title]='product.productName'>
+            </div>
+        </div>
+    </div>
+
+    <div class='card-footer'>
+        <button class='btn btn-outline-secondary'
+                (click)='onBack()'
+                style='width:80px'>
+            <i class='fa fa-chevron-left'></i> Back
+        </button>
+    </div>
+</div>
